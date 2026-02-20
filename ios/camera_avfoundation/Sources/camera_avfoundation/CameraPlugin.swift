@@ -133,6 +133,9 @@ extension CameraPlugin: CameraApi {
       guard let strongSelf = self else { return }
 
       let discoveryDevices: [AVCaptureDevice.DeviceType] = [
+        .builtInTripleCamera,
+        .builtInDualWideCamera,
+        .builtInDualCamera,
         .builtInWideAngleCamera,
         .builtInTelephotoCamera,
         .builtInUltraWideCamera,
@@ -182,6 +185,10 @@ extension CameraPlugin: CameraApi {
     case .builtInUltraWideCamera:
       return .ultraWide
     case .builtInDualWideCamera:
+      return .wide
+    case .builtInDualCamera:
+      return .wide
+    case .builtInTripleCamera:
       return .wide
     default:
       return .unknown
