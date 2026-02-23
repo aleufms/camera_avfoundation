@@ -274,12 +274,33 @@ extension CameraPlugin: CameraApi {
       camera?.close()
       camera = newCamera
 
+      setInitialZoomToWideCamera()
+
       ensureToRunOnMainQueue { [weak self] in
         guard let strongSelf = self else { return }
         completion(.success(strongSelf.registry.register(newCamera)))
       }
     } catch let error as NSError {
       completion(.failure(CameraPlugin.pigeonErrorFromNSError(error)))
+    }
+  }
+
+  // default zoom value is for ultra wide camera. settint the wide camera instead.
+  private func setInitialZoomToWideCamera() {
+    let discoverySession = AVCaptureDevice.DiscoverySession(
+      deviceTypes: [.builtInUltraWideCamera],
+      mediaType: .video,
+      position: .back)
+
+    // only try to set if device has ultra wide camera
+    guard discoverySession.devices.first != nil else { return }
+
+    guard let device = camera else { return }
+
+    if let wideCameraZoom = device.virtualDeviceSwitchOverVideoZoomFactors.first?.floatValue {
+      device.setZoomLevel(CGFloat(wideCameraZoom)) { _ in
+        // Ignore errors; setting zoom level to 1 is just a default behavior and it's fine if it fails.
+      }
     }
   }
 

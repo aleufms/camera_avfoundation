@@ -34,6 +34,8 @@ protocol Camera: FlutterTexture, AVCaptureVideoDataOutputSampleBufferDelegate,
   var minimumExposureOffset: CGFloat { get }
   var maximumExposureOffset: CGFloat { get }
 
+  var virtualDeviceSwitchOverVideoZoomFactors: [NSNumber] { get }
+
   func setUpCaptureSessionForAudioIfNeeded()
 
   /// Informs the Dart side of the plugin of the current camera state and capabilities.

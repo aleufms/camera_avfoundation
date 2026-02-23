@@ -30,6 +30,8 @@ final class DefaultCamera: NSObject, Camera {
   var minimumAvailableZoomFactor: CGFloat { captureDevice.minAvailableVideoZoomFactor }
   var maximumAvailableZoomFactor: CGFloat { captureDevice.maxAvailableVideoZoomFactor }
 
+  var virtualDeviceSwitchOverVideoZoomFactors: [NSNumber] { captureDevice.virtualDeviceSwitchOverVideoZoomFactors }
+
   /// The queue on which `latestPixelBuffer` property is accessed.
   /// To avoid unnecessary contention, do not access `latestPixelBuffer` on the `captureSessionQueue`.
   private let pixelBufferSynchronizationQueue = DispatchQueue(

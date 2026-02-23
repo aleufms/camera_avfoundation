@@ -74,6 +74,8 @@ protocol CaptureDevice: NSObjectProtocol {
   // Frame Duration
   var activeVideoMinFrameDuration: CMTime { get set }
   var activeVideoMaxFrameDuration: CMTime { get set }
+
+  var virtualDeviceSwitchOverVideoZoomFactors: [NSNumber] { get }
 }
 
 /// A protocol which is a direct passthrough to AVCaptureInput.

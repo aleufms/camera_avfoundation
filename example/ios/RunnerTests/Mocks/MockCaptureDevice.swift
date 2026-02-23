@@ -72,6 +72,8 @@ class MockCaptureDevice: NSObject, CaptureDevice {
   var activeVideoMinFrameDuration = CMTime(value: 1, timescale: 1)
   var activeVideoMaxFrameDuration = CMTime(value: 1, timescale: 1)
 
+  var virtualDeviceSwitchOverVideoZoomFactors: [NSNumber] = []  
+
   func isFlashModeSupported(_ mode: AVCaptureDevice.FlashMode) -> Bool {
     return false
   }
