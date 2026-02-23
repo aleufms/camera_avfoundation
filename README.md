@@ -1,15 +1,26 @@
 # camera\_avfoundation
 
-The iOS implementation of [`camera`][1].
+Este é um fork do plugin [camera_avfoundation](https://pub.dev/packages/camera_avfoundation)
 
-## Usage
+Ele adiciona o suporte a câmeras lógicas ([_builtInTripleCamera_, _builtInDualCamera_, _builtInDualWideCamera_](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct)) no iOS.
 
-This package is [endorsed][2], which means you can simply use `camera`
-normally. This package will be automatically included in your app when you do,
-so you do not need to add it to your `pubspec.yaml`.
+Esse projeto visa a alteração mínima do código original a fim de ficar fácil o remerge após uma eventual atualização da lib original. Assim, a camera principal irá ser substituída pela melhor câmera lógica disponível.
 
-However, if you `import` this package to use any of its APIs directly, you
-should add it to your `pubspec.yaml` as usual.
+## Uso
 
-[1]: https://pub.dev/packages/camera
-[2]: https://flutter.dev/to/endorsed-federated-plugin
+No `pubspec.yaml`, adicione em `dependency_overrides`:
+
+```
+...
+  camera: 0.11.3
+...
+
+dependency_overrides:
+  camera_avfoundation:
+    git:
+      url: git@github.com:aleufms/camera_avfoundation.git
+      ref: logical_cameras_support/x.y.z+a
+
+```
+
+onde `x.y.z+a` é a versão do plugin original
